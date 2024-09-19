@@ -1,0 +1,48 @@
+body {
+  background: #00b09b;
+  background: -webkit-linear-gradient(to bottom, #00b09b, #96c93d);
+  background: linear-gradient(to bottom, #00b09b, #96c93d);
+  height: 100vh;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 4rem auto;
+  font-family: "Roboto",
+    sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  box-shadow: rgba(228, 232, 247, 0.4) 0px 0px 80px 0px;
+  background-color: rgb(255, 255, 255);
+  padding: 100px;
+  border-radius: 20px;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+}
+
+.input:focus,
+.input.focused {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
