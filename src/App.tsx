@@ -22,7 +22,7 @@ type AnimeResponse = {
 const parseData = (data: Anime[]) => {
   if (!data) return [];
   const list = data.map((item) => ({
-    label: `${item.title} ${item.score ? `- ${item.score}/10` : ''} `,
+    label: `${item.title} ${item.score ? `- Score: ${item.score}` : ''} `,
     value: item.id,
   }));
   return list;
@@ -34,11 +34,6 @@ function App() {
   const [value, setValue] = useState('');
   const debounceValue = useDebounce(value, THRESHOLD_SEARCH);
   const {data, loading, error} = useQuery<AnimeResponse>(`${API_URL}?q=`, debounceValue);
-  useEffect(() => {
-    if (data) {
-      setOptions(parseData(data.data));
-    }
-  }, [data]);
 
   const handleChange = async (val: string) => {
     await setValue(val.trim());
@@ -47,6 +42,14 @@ function App() {
       setOptions([]);
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      setOptions(parseData(data.data));
+    }
+  }, [data]);
+
+
   return (
     <div className='wrapper'>
       <div className='container'>
