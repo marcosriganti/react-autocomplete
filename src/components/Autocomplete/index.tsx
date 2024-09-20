@@ -17,7 +17,13 @@ interface AutocompleteProps extends Omit<React.HTMLProps<HTMLInputElement>, 'onC
 }
 
 const Autocomplete = (props: AutocompleteProps) => {
-    const {placeholder, options, onOptionSelect, onChange, loading, ...rest} = props;
+    const {
+        placeholder,
+        options,
+        onOptionSelect,
+        onChange,
+        loading,
+        ...rest} = props;
     const inputRef = useRef<HTMLInputElement>(null);
     const [suggestionsVisible, setSuggestionVisible] = useState<Boolean>(false);
     const [value, setValue] = useState<string>('');

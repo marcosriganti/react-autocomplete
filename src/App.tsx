@@ -47,7 +47,6 @@ function App() {
       setOptions([]);
     }
   };
-  const isLoading = value !== debounceValue;
   return (
     <div className='wrapper'>
       <div className='container'>
