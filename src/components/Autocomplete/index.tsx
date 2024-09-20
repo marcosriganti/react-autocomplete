@@ -65,7 +65,7 @@ const Autocomplete = (props: AutocompleteProps) => {
     };
 
     const renderOptions = (option: AutoCompleteOption, i: number) => {
-        const regex = new RegExp(`(${value})`, 'gi');
+        const regex = new RegExp(`(${value})`, 'ig');
         const parts = option.label.split(regex);
         return <li
             tabIndex={i + 3}
