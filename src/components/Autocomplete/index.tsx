@@ -21,7 +21,6 @@ const Autocomplete = (props: AutocompleteProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [suggestionsVisible, setSuggestionVisible] = useState<Boolean>(false);
     const [value, setValue] = useState<string>('');
-    const [optionSelected, setOptionSelected] = useState<AutoCompleteOption | null>(null);
 
     const handleOnChange = (ev: React.FormEvent<HTMLInputElement>) => {
         setValue(ev.currentTarget.value);
@@ -29,7 +28,6 @@ const Autocomplete = (props: AutocompleteProps) => {
     };
 
     const handleSelect = async (option: AutoCompleteOption) => {
-        await setOptionSelected(option || null);
         await setValue(option?.label.trim() || '');
         onOptionSelect && onOptionSelect(option || null);
         setSuggestionVisible(false);
@@ -69,6 +67,7 @@ const Autocomplete = (props: AutocompleteProps) => {
             onClick={ev => handleClick(ev, option)}
             onKeyUp={ev => handleKeyUp(ev, option)}
             role='option'
+            aria-selected={value === option.label}
             className='autocomplete-option'>{parts.map((part, i) => (
                 regex.test(part) ? <mark key={i}>{part}</mark> : <span key={i}>{part}</span>
             ))}</li>;
@@ -88,8 +87,8 @@ const Autocomplete = (props: AutocompleteProps) => {
         />
         {value.length > 0 && <button className='autocomplete-close' onClick={handleClear}>+</button>}
         {(loading && value) && <div className='autocomplete-loading'><img src={Loading} alt='Loading options' /></div>}
-        {suggestionsVisible && <div>
-            {options.map(renderOptions).length > 0 && <ul className='autocomplete-list-options' role="combobox" tabIndex={2}>
+        {(suggestionsVisible && !loading) && <div>
+            {options.map(renderOptions).length > 0 && <ul className='autocomplete-list-options' tabIndex={2}>
                 {options.map((option, i) => renderOptions(option, i))}
             </ul>}
         </div>}
