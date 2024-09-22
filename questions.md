@@ -7,9 +7,9 @@ The main difference is that the PureComponent (either a class component or funct
 ```javascript
 
     class Child extends PureComponent {
-	    render: {
+	    render() {
 		    console.log('updated');
-		    return <div>Hi!</div>'
+		    return <div>Hi!</div>;
 	    }
     }
     class Parent extends React.Component {
